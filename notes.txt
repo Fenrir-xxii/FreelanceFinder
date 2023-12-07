@@ -1,0 +1,68 @@
+Freelance service "FreelanceFinder":
+FreelanceFinder is a place to find right person for your job or find a job for yourself.
+	- admin:
+		1 approving project request
+		2 removing project from site (after someone report it)
+		3 adding new skills (tags)
+		
+	- user (employer):
+		1 creating project
+		2 approving freelancer
+		3 edit project (advertise)
+		4 cancel project
+		5 closing project
+		6 comment and rate freelancer (after finishing project)
+	- user (employee - freelancer)
+		1 creating own resume (simple card with skills & expirience)
+		2 edit resume
+		3 apply for a project
+		4 quit project
+		5 report employer
+		6 comment and rate employer (after finishing some project)
+		
+		DB MODELS:		
+		
+	Project-advertise:
+		1. Employer {FK}
+		2. Deadline (terms)
+		3. Price
+		4. Description
+		5. Tags (required skills) {FK} (separate table)
+		6. Minimum (necessary) freelancer skills (expirience, rating and so on) {FK} (separate table)
+		7. Q-ty of workplace (for example job for 2 devs)
+		8. Executor (project only for a specific freelancer). This project not visible for others. Optional {FK}
+	
+	Project:
+		1. Project-advertise {FK}
+		2. Employee (freelancer) {FK}
+		3. Status {FK}
+	
+	Skill:
+		1. Title
+		2. SkillField (Programming, Style ...) {FK}
+	
+	FreelancerSkill:
+		1. Skill {FK}
+		2. Year(s) of experience (date)
+		3. Project(s) finished
+	
+	SkillField:
+		1. Title
+		
+	Employer:
+		1. Title (Full name)
+		2. Rating
+		3. Q-ty of job (project) offers
+		4. % of finished (completed) projects
+		5. Registration date
+		
+	Employee (freelancer):
+		1. Full Name
+		2. FreelancerSkill FK (separate table)
+		3. Q-ty of aproved projects
+		4. % of finished (completed) projects
+		5. Registration date
+		6. Rating
+		
+	Status:
+		1. Title
