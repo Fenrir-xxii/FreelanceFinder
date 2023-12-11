@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FreelanceFinder.Core.Entities
 {
@@ -14,12 +15,15 @@ namespace FreelanceFinder.Core.Entities
         public int FinishedProjectsCount { get; set; }
         public DateTime RegistrationDate { get; set; }
         public int Rating { get; set; }
-        public virtual ICollection<FreelancerSkill> Skills { get; set; }
-
-        public double getPercentageOfCompletedProjects()
+        public ICollection<FreelancerSkill> Skills { get; set; }
+        [NotMapped]
+        public double PercentageOfCompletedProjects
         {
-            // To Do
-            return 0.00;
+            get
+            {
+                // TO DO
+                return 0.00;
+            }
         }
     }
 }

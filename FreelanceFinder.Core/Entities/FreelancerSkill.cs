@@ -1,19 +1,28 @@
-﻿namespace FreelanceFinder.Core.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FreelanceFinder.Core.Entities
 {
     public class FreelancerSkill : BaseEntity
     {
-        //Foreign key for Skill
         public int SkillId { get; set; }
         public Skill Skill { get; set; }
         public DateTime ExperienceInitDate { get; set; }
         public int FinishedProjectCount { get; set; }
-        //Foreign key for Freelancer
         public int FreelancerId { get; set; }
         public Freelancer Freelancer { get; set; }
-        public int getExpirienceInMonths()
+        [NotMapped]
+        public int ExpirienceInMonths
         {
-            // TO DO
-            return 0;
+            get
+            {
+                // TO DO
+                return 0;
+            }
+            set
+            {
+                ExpirienceInMonths = value;
+            }
+
         }
     }
 }
