@@ -4,6 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FreelanceFinder.Core\FreelanceFinder.Core.csproj" />
+    <ProjectReference Include="..\FreelanceFinder.Infrastructure\FreelanceFinder.Infrastructure.csproj" />
+  </ItemGroup>
 
 </Project>

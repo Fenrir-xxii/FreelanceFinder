@@ -1,4 +1,10 @@
 using FreelanceFinder.Infrastructure;
+using FreelanceFinder.Application.Services;
+using Microsoft.Data.SqlClient.DataClassification;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+using FreelanceFinder.Application.Common;
+using FreelanceFinder.Core.Entities;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +13,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddApplicationDbContext(builder.Configuration);
+
+// Add entity services
+builder.Services.AddScoped<IEntityService<Employer>, EmployerService>();
+builder.Services.AddScoped<IEntityService<Freelancer>, FreelancerService>();
+builder.Services.AddScoped<IEntityService<FreelancerSkill>, FreelancerSkillService>();
+builder.Services.AddScoped<IEntityService<ProjectAdvertisement>, ProjectAdvertisementService>();
+builder.Services.AddScoped<IEntityService<Project>, ProjectService>();
+builder.Services.AddScoped<IEntityService<RequiredSkill>, RequiredSkillService>();
+builder.Services.AddScoped<IEntityService<SkillArea>, SkillAreaService>();
+builder.Services.AddScoped<IEntityService<Skill>, SkillService>();
+builder.Services.AddScoped<IEntityService<Status>, StatusService>();
 
 
 var app = builder.Build();

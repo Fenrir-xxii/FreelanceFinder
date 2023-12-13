@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FreelanceFinder.Application\FreelanceFinder.Application.csproj" />
     <ProjectReference Include="..\FreelanceFinder.Infrastructure\FreelanceFinder.Infrastructure.csproj" />
   </ItemGroup>
 
