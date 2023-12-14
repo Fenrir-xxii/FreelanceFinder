@@ -18,6 +18,10 @@ namespace FreelanceFinder.Infrastructure.Data.EntityConfig
             builder.Property(x => x.Price)
                 .HasColumnType("money");
 
+            builder.Property(x => x.Title)
+             .HasMaxLength(100)
+             .IsRequired();
+
             builder.Property(x => x.Description)
               .HasMaxLength(5000)
               .IsRequired();
@@ -26,6 +30,8 @@ namespace FreelanceFinder.Infrastructure.Data.EntityConfig
                .HasDefaultValue(1);
 
             builder.HasOne(x => x.Employer);
+
+            builder.HasOne(x => x.Currency);
 
             builder.HasMany(x => x.RequiredSkills);
 

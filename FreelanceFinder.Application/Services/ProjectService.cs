@@ -35,6 +35,8 @@ namespace FreelanceFinder.Application.Services
                .Include(x => x.ProjectAdvertise)
                .ThenInclude(x => x.Employer)
                .Include(x => x.ProjectAdvertise)
+               .ThenInclude(x => x.Currency)
+               .Include(x => x.ProjectAdvertise)
                .ThenInclude(x => x.Freelancer)
                .Include(x => x.ProjectAdvertise)
                .ThenInclude(x => x.RequiredSkills)
@@ -51,6 +53,8 @@ namespace FreelanceFinder.Application.Services
             var project = await _dbContext.Projects
                .Include(x => x.ProjectAdvertise)
                .ThenInclude(x => x.Employer)
+               .Include(x => x.ProjectAdvertise)
+               .ThenInclude(x => x.Currency)
                .Include(x => x.ProjectAdvertise)
                .ThenInclude(x => x.Freelancer)
                .Include(x => x.ProjectAdvertise)
@@ -73,6 +77,8 @@ namespace FreelanceFinder.Application.Services
             var project = _dbContext.Projects
                .Include(x => x.ProjectAdvertise)
                .ThenInclude(x => x.Employer)
+               .Include(x => x.ProjectAdvertise)
+               .ThenInclude(x => x.Currency)
                .Include(x => x.ProjectAdvertise)
                .ThenInclude(x => x.Freelancer)
                .Include(x => x.ProjectAdvertise)

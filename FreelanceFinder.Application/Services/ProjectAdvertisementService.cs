@@ -33,9 +33,11 @@ namespace FreelanceFinder.Application.Services
         {
             return await _dbContext.ProjectAdvertisements
                 .Include(x => x.Employer)
+                .Include(x => x.Currency)
                 .Include(x => x.Freelancer)
                 .Include(x => x.RequiredSkills)
                 .ThenInclude(x => x.Skill)
+                .ThenInclude(x => x.SkillArea)
                 .ToListAsync();
         }
 
@@ -43,9 +45,11 @@ namespace FreelanceFinder.Application.Services
         {
             var projectadvertisement = await _dbContext.ProjectAdvertisements
                 .Include(x => x.Employer)
+                .Include(x => x.Currency)
                 .Include(x => x.Freelancer)
                 .Include(x => x.RequiredSkills)
                 .ThenInclude(x => x.Skill)
+                .ThenInclude(x => x.SkillArea)
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (projectadvertisement == null)
             {
@@ -58,9 +62,11 @@ namespace FreelanceFinder.Application.Services
         {
             var projectadvertisement = _dbContext.ProjectAdvertisements
                .Include(x => x.Employer)
+               .Include(x => x.Currency)
                .Include(x => x.Freelancer)
                .Include(x => x.RequiredSkills)
                .ThenInclude(x => x.Skill)
+               .ThenInclude(x => x.SkillArea)
                .FirstOrDefault(x => x.Id == entity.Id);
 
             if (projectadvertisement == null)
@@ -70,7 +76,10 @@ namespace FreelanceFinder.Application.Services
             projectadvertisement.Employer = entity.Employer;
             projectadvertisement.EmployerId = entity.EmployerId;
             projectadvertisement.ExpiredAt = entity.ExpiredAt;
+            projectadvertisement.Title = entity.Title;
             projectadvertisement.Price = entity.Price;
+            projectadvertisement.Currency = entity.Currency;
+            projectadvertisement.CurrencyId = entity.CurrencyId;
             projectadvertisement.Description = entity.Description;
             projectadvertisement.WorkplaceCount = entity.WorkplaceCount;
             projectadvertisement.Freelancer = entity.Freelancer;

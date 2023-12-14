@@ -1,6 +1,7 @@
 ﻿using FreelanceFinder.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 
 namespace FreelanceFinder.Infrastructure
@@ -10,7 +11,7 @@ namespace FreelanceFinder.Infrastructure
         public static void AddApplicationDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<FreelanceContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("sqlServer")));
+            options.UseSqlServer(configuration.GetConnectionString("sqlServer")));
         }
     }
 }

@@ -21,7 +21,7 @@ namespace FreelanceFinder.WebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var projectAdvertisements = await _projectAdvertisementService.GetAllAsync();
-            ViewData["ProjectAdvertisementCount"] = projectAdvertisements.Count();
+            ViewData["ProjectAdvertisementCount"] = projectAdvertisements.ToList();
             return View();
         }
 

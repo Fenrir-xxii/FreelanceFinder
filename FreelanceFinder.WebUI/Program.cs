@@ -24,7 +24,7 @@ builder.Services.AddScoped<IEntityService<RequiredSkill>, RequiredSkillService>(
 builder.Services.AddScoped<IEntityService<SkillArea>, SkillAreaService>();
 builder.Services.AddScoped<IEntityService<Skill>, SkillService>();
 builder.Services.AddScoped<IEntityService<Status>, StatusService>();
-
+builder.Services.AddScoped<IEntityService<Currency>, CurrencyService>();
 
 var app = builder.Build();
 
