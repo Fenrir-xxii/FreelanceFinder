@@ -1,6 +1,7 @@
 ﻿using FreelanceFinder.Application.Common;
 using FreelanceFinder.Core.Entities;
 using FreelanceFinder.Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace FreelanceFinder.Application.Services
@@ -78,5 +79,15 @@ namespace FreelanceFinder.Application.Services
             }
         }
         // TO DO remove skill
+        public async Task<List<SelectListItem>> GetSelectListItem()
+        {
+            var list = new List<SelectListItem>();
+            var freelancers = await GetAllAsync();
+            foreach (var freelancer in freelancers)
+            {
+                list.Add(new SelectListItem { Value = freelancer.Id.ToString(), Text = freelancer.FullName });
+            }
+            return list;
+        }
     }
 }

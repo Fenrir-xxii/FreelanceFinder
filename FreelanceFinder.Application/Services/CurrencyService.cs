@@ -1,6 +1,7 @@
 ﻿using FreelanceFinder.Application.Common;
 using FreelanceFinder.Core.Entities;
 using FreelanceFinder.Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace FreelanceFinder.Application.Services
@@ -57,6 +58,16 @@ namespace FreelanceFinder.Application.Services
 
             _dbContext.Update(currency);
             await _dbContext.SaveChangesAsync();
+        }
+        public async Task<List<SelectListItem>> GetSelectListItem()
+        {
+            var list = new List<SelectListItem>();
+            var currencies = await GetAllAsync();
+            foreach (var currency in currencies)
+            {
+                list.Add(new SelectListItem { Value = currency.Id.ToString(), Text = currency.Title });
+            }
+            return list;
         }
     }
 }

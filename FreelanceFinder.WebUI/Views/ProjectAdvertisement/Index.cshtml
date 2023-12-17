@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Employer Panel";
+    var projectAdvertisements = ViewData["ProjectAdvertisements"] as List<ProjectAdvertisement>;
+}
+<div class="container">
+    <a class="btn btn-outline-primary mt-5 mb-5" href="/employer/advertisements/new-advertisement">Create Project Advertisement</a>
+
+    @if (@projectAdvertisements != null)
+    {
+        <table class="table table-dark table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Workplace Count</th>
+                    <th>Specific Freelancer</th>
+                    <th>Expire Date</th>
+                    <th>Controls</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var advertisement in @projectAdvertisements)
+                {
+                    <tr class="align-middle">
+                        <td>@advertisement.Id</td>
+                        <td>@advertisement.Title</td>
+                        <td>@advertisement.Price @advertisement.Currency.CurrencyISOCode</td>
+                        <td>@advertisement.WorkplaceCount</td>
+                        <td>
+                            @if (advertisement.Freelancer != null)
+                            {
+                                <a>@advertisement.Freelancer.LastName @advertisement.Freelancer.FirstName</a>
+                            }
+                            else
+                            {
+                                <a>None</a>
+                            }
+                        </td>
+                        <td>@advertisement.ExpiredAt</td>
+                        <td>
+                            <div class="d-flex my-controls">
+                                @* <button asp-controller="ProjectAdvertisement" asp-action="AddRequiredSkill" asp-route-id="@advertisement.Id" formmethod="get" class="btn btn-outline-light">Add Required Skills</button> *@
+                                <a asp-controller="ProjectAdvertisement" asp-action="AddRequiredSkill" asp-route-id="@advertisement.Id" formmethod="get" class="btn btn-outline-light">Add Required Skills</a>
+                                &nbsp;
+                                <a asp-controller="ProjectAdvertisement" asp-action="EditProjectAdvertisement" asp-route-id="@advertisement.Id" formmethod="get" class="btn btn-outline-warning">Edit</a>
+                                &nbsp;
+                                @* <a asp-controller="ProjectAdvertisement" asp-action="DeleteProjectAdvertisement" asp-route-id="@advertisement.Id" formmethod="post" class="btn btn-outline-danger">Delete</a> *@
+                                <form method="post" asp-controller="ProjectAdvertisement" asp-action="DeleteProjectAdvertisement" asp-route-id="@advertisement.Id">
+                                    <button class="btn btn-outline-danger" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+</div>

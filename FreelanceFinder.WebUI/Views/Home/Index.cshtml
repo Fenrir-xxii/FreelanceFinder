@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    var projectAdvertisements = ViewData["ProjectAdvertisementCount"] as List<ProjectAdvertisement>;
+    var projectAdvertisements = ViewData["ProjectAdvertisements"] as List<ProjectAdvertisement>;
 }
 
 <div class="card-container d-flex flex-column">
@@ -26,7 +26,7 @@
                 <div class="card-footer">
                     @foreach(var requiredSkill in advertisement.RequiredSkills)
                     {
-                        <a>@requiredSkill.Skill.Title</a>
+                        <span class="badge bg-success">@requiredSkill.Skill.Title</span>
                     }
                 </div>
             </div>

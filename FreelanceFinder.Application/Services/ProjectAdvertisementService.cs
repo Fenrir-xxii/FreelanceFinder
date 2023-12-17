@@ -73,13 +73,19 @@ namespace FreelanceFinder.Application.Services
             {
                 throw new Exception("Item not found");
             }
-            projectadvertisement.Employer = entity.Employer;
-            projectadvertisement.EmployerId = entity.EmployerId;
+            if(entity.Employer != null)
+            {
+                projectadvertisement.Employer = entity.Employer;
+            }
+            if(entity.Currency != null) 
+            {
+                projectadvertisement.Currency = entity.Currency;
+            }
             projectadvertisement.ExpiredAt = entity.ExpiredAt;
             projectadvertisement.Title = entity.Title;
             projectadvertisement.Price = entity.Price;
-            projectadvertisement.Currency = entity.Currency;
             projectadvertisement.CurrencyId = entity.CurrencyId;
+            projectadvertisement.EmployerId = entity.EmployerId;
             projectadvertisement.Description = entity.Description;
             projectadvertisement.WorkplaceCount = entity.WorkplaceCount;
             projectadvertisement.Freelancer = entity.Freelancer;
@@ -87,6 +93,18 @@ namespace FreelanceFinder.Application.Services
             projectadvertisement.RequiredSkills = entity.RequiredSkills;
             _dbContext.Update(projectadvertisement);
             await _dbContext.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<ProjectAdvertisement>> GetAllByEmployerIdAsync(int id)
+        {
+            return await _dbContext.ProjectAdvertisements
+                .Include(x => x.Employer)
+                .Include(x => x.Currency)
+                .Include(x => x.Freelancer)
+                .Include(x => x.RequiredSkills)
+                .ThenInclude(x => x.Skill)
+                .ThenInclude(x => x.SkillArea)
+                .Where(x => x.EmployerId == id)
+                .ToListAsync();
         }
         public async Task AddRequiredSkill(int projectAdvertisementId, RequiredSkill skill)
         {

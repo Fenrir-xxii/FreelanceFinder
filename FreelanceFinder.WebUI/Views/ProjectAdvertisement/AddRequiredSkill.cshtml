@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var skills = ViewData["Skills"] as List<SelectListItem>;
+    var advertisementId = ViewData["ProjectAdvertisementId"] as int?;
+}
+@model RequiredSkill;
+<form asp-controller="ProjectAdvertisement" asp-action="AddRequiredSkill" asp-route-id="@advertisementId" method="post">
+    <div class="form-group">
+        <label asp-for="SkillId" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="SkillId" asp-items="@skills" class="form-select"></select>
+            <span asp-validation-for="SkillId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="MonthsOfExperience" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="MonthsOfExperience" class="form-control" type="number" min="0" max="100"/>
+            <span asp-validation-for="MonthsOfExperience" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="FinishedProjectCount" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="FinishedProjectCount" class="form-control" type="number" min="0" max="100" />
+            <span asp-validation-for="FinishedProjectCount" class="text-danger"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success my-2">Save</button>
+</form>

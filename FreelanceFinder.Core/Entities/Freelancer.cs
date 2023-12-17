@@ -25,5 +25,13 @@ namespace FreelanceFinder.Core.Entities
                 return 0.00;
             }
         }
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return FirstName + ' ' + LastName;
+            }
+        }
     }
 }

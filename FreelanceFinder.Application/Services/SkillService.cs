@@ -1,6 +1,7 @@
 ﻿using FreelanceFinder.Application.Common;
 using FreelanceFinder.Core.Entities;
 using FreelanceFinder.Infrastructure.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace FreelanceFinder.Application.Services
@@ -56,6 +57,16 @@ namespace FreelanceFinder.Application.Services
             skill.SkillAreaId = entity.SkillAreaId;
             _dbContext.Update(skill);
             await _dbContext.SaveChangesAsync();
+        }
+        public async Task<List<SelectListItem>> GetSelectListItem()
+        {
+            var list = new List<SelectListItem>();
+            var skills = await GetAllAsync();
+            foreach (var skill in skills)
+            {
+                list.Add(new SelectListItem { Value = skill.Id.ToString(), Text = skill.Title });
+            }
+            return list;
         }
     }
 }

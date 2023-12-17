@@ -23,4 +23,8 @@
     <ProjectReference Include="..\FreelanceFinder.Infrastructure\FreelanceFinder.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\Freelancer\" />
+  </ItemGroup>
+
 </Project>
