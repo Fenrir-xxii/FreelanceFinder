@@ -27,7 +27,7 @@ namespace FreelanceFinder.Application.Services
             _dbContext.SkillAreas.Remove(skillArea);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task<IEnumerable<SkillArea>> GetAllAsync()
+        public async Task<IReadOnlyList<SkillArea>> GetAllAsync()
         {
             return await _dbContext.SkillAreas.ToListAsync();
         }

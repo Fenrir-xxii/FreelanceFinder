@@ -27,7 +27,7 @@ namespace FreelanceFinder.Application.Services
             _dbContext.Statuses.Remove(status);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task<IEnumerable<Status>> GetAllAsync()
+        public async Task<IReadOnlyList<Status>> GetAllAsync()
         {
             return await _dbContext.Statuses.ToListAsync();
         }

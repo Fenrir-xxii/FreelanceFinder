@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using FreelanceFinder.Application.Common;
 using FreelanceFinder.Core.Entities;
+using FreelanceFinder.Application.Common.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,10 +15,11 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddApplicationDbContext(builder.Configuration);
 
+builder.Services.AddAutoMapper(typeof(OrganizationProfile));
+
 // Add entity services
 builder.Services.AddScoped<IEntityService<Employer>, EmployerService>();
 builder.Services.AddScoped<IEntityService<Freelancer>, FreelancerService>();
-builder.Services.AddScoped<IEntityService<FreelancerSkill>, FreelancerSkillService>();
 builder.Services.AddScoped<IEntityService<ProjectAdvertisement>, ProjectAdvertisementService>();
 builder.Services.AddScoped<IEntityService<Project>, ProjectService>();
 builder.Services.AddScoped<IEntityService<RequiredSkill>, RequiredSkillService>();

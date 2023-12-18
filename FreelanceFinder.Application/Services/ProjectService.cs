@@ -29,7 +29,7 @@ namespace FreelanceFinder.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Project>> GetAllAsync()
+        public async Task<IReadOnlyList<Project>> GetAllAsync()
         {
             return await _dbContext.Projects                // find better solution
                .Include(x => x.ProjectAdvertise)

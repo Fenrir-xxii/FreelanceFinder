@@ -29,7 +29,7 @@ namespace FreelanceFinder.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Employer>> GetAllAsync()
+        public async Task<IReadOnlyList<Employer>> GetAllAsync()
         {
             return await _dbContext.Employers.ToListAsync();
         }

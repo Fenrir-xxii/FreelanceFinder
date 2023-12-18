@@ -30,7 +30,7 @@ namespace FreelanceFinder.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Currency>> GetAllAsync()
+        public async Task<IReadOnlyList<Currency>> GetAllAsync()
         {
             return await _dbContext.Currencies.ToListAsync();
         }
@@ -59,15 +59,15 @@ namespace FreelanceFinder.Application.Services
             _dbContext.Update(currency);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task<List<SelectListItem>> GetSelectListItem()
-        {
-            var list = new List<SelectListItem>();
-            var currencies = await GetAllAsync();
-            foreach (var currency in currencies)
-            {
-                list.Add(new SelectListItem { Value = currency.Id.ToString(), Text = currency.Title });
-            }
-            return list;
-        }
+        //public async Task<List<SelectListItem>> GetSelectListItem()
+        //{
+        //    var list = new List<SelectListItem>();
+        //    var currencies = await GetAllAsync();
+        //    foreach (var currency in currencies)
+        //    {
+        //        list.Add(new SelectListItem { Value = currency.Id.ToString(), Text = currency.Title });
+        //    }
+        //    return list;
+        //}
     }
 }

@@ -30,7 +30,7 @@ namespace FreelanceFinder.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Freelancer>> GetAllAsync()
+        public async Task<IReadOnlyList<Freelancer>> GetAllAsync()
         {
             return await _dbContext.Freelancers.Include(x => x.Skills).ToListAsync();
         }
@@ -66,28 +66,67 @@ namespace FreelanceFinder.Application.Services
         public async Task AddSkill(int freelancerId, FreelancerSkill skill)
         {
             var freelancer = _dbContext.Freelancers.Include(x => x.Skills).FirstOrDefault(x => x.Id == freelancerId);
-            var skillDb = _dbContext.FreelancerSkills.FirstOrDefault(x => x.Id == skill.Id);
-            if (freelancer == null || skillDb == null)
+            if (freelancer == null)
             {
                 throw new Exception("Item not found");
             }
-            if(freelancer.Skills.Any(x => x.Id != skillDb.Id))
+            if(freelancer.Skills.Any(x => x.Id != skill.Id))
             {
+                var skillDb = _dbContext.FreelancerSkills.FirstOrDefault(x => x.Id == skill.Id);
+                if (skillDb == null)
+                {
+                    throw new Exception("Item not found");
+                }
                 freelancer.Skills.Add(skillDb);
                 _dbContext.Update(freelancer);
                 await _dbContext.SaveChangesAsync();
             }
         }
-        // TO DO remove skill
-        public async Task<List<SelectListItem>> GetSelectListItem()
+        public async Task RemoveSkill(int freelancerSkillId)
         {
-            var list = new List<SelectListItem>();
-            var freelancers = await GetAllAsync();
-            foreach (var freelancer in freelancers)
+            var freelancerSkill = _dbContext.FreelancerSkills.FirstOrDefault(x => x.Id == freelancerSkillId);
+            if (freelancerSkill == null)
             {
-                list.Add(new SelectListItem { Value = freelancer.Id.ToString(), Text = freelancer.FullName });
+                throw new Exception("Item not found");
             }
-            return list;
+            _dbContext.FreelancerSkills.Remove(freelancerSkill);
+            await _dbContext.SaveChangesAsync();
         }
+        public async Task<FreelancerSkill> GetSkillByIdAsync(int id)
+        {
+            var freelancerSkill = await _dbContext.FreelancerSkills.Include(x => x.Skill).FirstOrDefaultAsync(x => x.Id == id);
+            if (freelancerSkill == null)
+            {
+                throw new Exception("Item not found");
+            }
+            return freelancerSkill;
+        }
+        public async Task UpdateSkillAsync(FreelancerSkill entity)
+        {
+            var freelancerSkill = _dbContext.FreelancerSkills.Include(x => x.Skill).FirstOrDefault(x => x.Id == entity.Id);
+            if (freelancerSkill == null)
+            {
+                throw new Exception("Item not found");
+            }
+            freelancerSkill.ExperienceInitDate = entity.ExperienceInitDate;
+            freelancerSkill.Skill = entity.Skill;
+            freelancerSkill.SkillId = entity.SkillId;
+            freelancerSkill.FinishedProjectCount = entity.FinishedProjectCount;
+            freelancerSkill.Freelancer = entity.Freelancer;
+            freelancerSkill.FreelancerId = entity.FreelancerId;
+            _dbContext.Update(freelancerSkill);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        //public async Task<List<SelectListItem>> GetSelectListItem()
+        //{
+        //    var list = new List<SelectListItem>();
+        //    var freelancers = await GetAllAsync();
+        //    foreach (var freelancer in freelancers)
+        //    {
+        //        list.Add(new SelectListItem { Value = freelancer.Id.ToString(), Text = freelancer.FullName });
+        //    }
+        //    return list;
+        //}
     }
 }

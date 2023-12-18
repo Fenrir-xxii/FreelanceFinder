@@ -1,7 +1,9 @@
-﻿using FreelanceFinder.Application.Common;
+﻿
+using FreelanceFinder.Application.Common;
 using FreelanceFinder.Core.Entities;
 using FreelanceFinder.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace FreelanceFinder.Application.Services
 {
@@ -29,7 +31,7 @@ namespace FreelanceFinder.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<ProjectAdvertisement>> GetAllAsync()
+        public async Task<IReadOnlyList<ProjectAdvertisement>> GetAllAsync()
         {
             return await _dbContext.ProjectAdvertisements
                 .Include(x => x.Employer)
@@ -73,11 +75,11 @@ namespace FreelanceFinder.Application.Services
             {
                 throw new Exception("Item not found");
             }
-            if(entity.Employer != null)
+            if (entity.Employer != null)
             {
                 projectadvertisement.Employer = entity.Employer;
             }
-            if(entity.Currency != null) 
+            if (entity.Currency != null)
             {
                 projectadvertisement.Currency = entity.Currency;
             }
@@ -91,10 +93,11 @@ namespace FreelanceFinder.Application.Services
             projectadvertisement.Freelancer = entity.Freelancer;
             projectadvertisement.FreelancerId = entity.FreelancerId;
             projectadvertisement.RequiredSkills = entity.RequiredSkills;
+
             _dbContext.Update(projectadvertisement);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task<IEnumerable<ProjectAdvertisement>> GetAllByEmployerIdAsync(int id)
+        public async Task<IReadOnlyList<ProjectAdvertisement>> GetAllByEmployerIdAsync(int id)
         {
             return await _dbContext.ProjectAdvertisements
                 .Include(x => x.Employer)

@@ -3,7 +3,7 @@
 *@
 @{
     ViewData["Title"] = "Employer Panel";
-    var projectAdvertisements = ViewData["ProjectAdvertisements"] as List<ProjectAdvertisement>;
+    var projectAdvertisements = ViewData["ProjectAdvertisements"] as IReadOnlyList<ProjectAdvertisementDTO>;
 }
 <div class="container">
     <a class="btn btn-outline-primary mt-5 mb-5" href="/employer/advertisements/new-advertisement">Create Project Advertisement</a>

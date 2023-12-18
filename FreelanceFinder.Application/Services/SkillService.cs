@@ -30,7 +30,7 @@ namespace FreelanceFinder.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Skill>> GetAllAsync()
+        public async Task<IReadOnlyList<Skill>> GetAllAsync()
         {
             return await _dbContext.Skills.Include(x => x.SkillArea).ToListAsync();
         }
@@ -58,15 +58,15 @@ namespace FreelanceFinder.Application.Services
             _dbContext.Update(skill);
             await _dbContext.SaveChangesAsync();
         }
-        public async Task<List<SelectListItem>> GetSelectListItem()
-        {
-            var list = new List<SelectListItem>();
-            var skills = await GetAllAsync();
-            foreach (var skill in skills)
-            {
-                list.Add(new SelectListItem { Value = skill.Id.ToString(), Text = skill.Title });
-            }
-            return list;
-        }
+        //public async Task<List<SelectListItem>> GetSelectListItem()
+        //{
+        //    var list = new List<SelectListItem>();
+        //    var skills = await GetAllAsync();
+        //    foreach (var skill in skills)
+        //    {
+        //        list.Add(new SelectListItem { Value = skill.Id.ToString(), Text = skill.Title });
+        //    }
+        //    return list;
+        //}
     }
 }

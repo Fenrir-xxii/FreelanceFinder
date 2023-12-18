@@ -30,7 +30,7 @@ namespace FreelanceFinder.Application.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<RequiredSkill>> GetAllAsync()
+        public async Task<IReadOnlyList<RequiredSkill>> GetAllAsync()
         {
             return await _dbContext.RequiredSkills.Include(x => x.Skill).Include(x => x.ProjectAdvertisement).ToListAsync();
         }
