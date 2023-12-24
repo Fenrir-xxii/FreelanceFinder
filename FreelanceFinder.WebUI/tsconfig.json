@@ -1,0 +1,17 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "outDir": "wwwroot/js",
+    "paths": {
+      "sweetalert2": [ "https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1" ]
+    },
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "include": [
+    "scripts/**/*"
+  ]
+}

@@ -10,19 +10,19 @@ namespace FreelanceFinder.Core.Entities
         public int FinishedProjectCount { get; set; }
         public int FreelancerId { get; set; }
         public Freelancer Freelancer { get; set; }
-        [NotMapped]
-        public int ExpirienceInMonths
-        {
-            get
-            {
-                // TO DO
-                return 0;
-            }
-            set
-            {
-                ExpirienceInMonths = value;
-            }
+        //[NotMapped]
+        //public int ExpirienceInMonths
+        //{
+        //    get
+        //    {
+        //        // TO DO
+        //        return 0;
+        //    }
+        //    set
+        //    {
+        //        ExpirienceInMonths = value;
+        //    }
 
-        }
+        //}
     }
 }

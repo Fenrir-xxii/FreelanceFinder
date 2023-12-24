@@ -18,7 +18,14 @@
                 </div>
 
                 <div class="card-content fs-4" style="background-color:aliceblue; border-radius:10px;">
-                    @advertisement.Description
+                    @* TO DO change dto *@
+                    @if (advertisement.Description.Length > 400)
+                    {
+                        @advertisement.Description.Substring(0, 400).Insert(400, "...");
+                    }
+                    else{
+                        @advertisement.Description;
+                    }
                 </div>
                 <div class="d-flex justify-content-between fs-5 px-2">
                     Expires at: @advertisement.ExpiredAt.ToString("dd.MM.yyyy")
@@ -36,3 +43,16 @@
         }
     }
 </div>
+@* Test TypeScrip *@
+@* REMOVE LATER *@
+<div id="ts-example">
+    <br />
+    <button type="button" class="btn btn-primary btn-md" onclick="TSButton()">
+        Click Me
+    </button>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/test.js"></script>
+}

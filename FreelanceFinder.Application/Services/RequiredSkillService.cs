@@ -32,11 +32,13 @@ namespace FreelanceFinder.Application.Services
 
         public async Task<IReadOnlyList<RequiredSkill>> GetAllAsync()
         {
+            //return await _dbContext.RequiredSkills.Include(x => x.Skill).ToListAsync();
             return await _dbContext.RequiredSkills.Include(x => x.Skill).Include(x => x.ProjectAdvertisement).ToListAsync();
         }
 
         public async Task<RequiredSkill> GetByIdAsync(int id)
         {
+            //var requiredSkill = await _dbContext.RequiredSkills.Include(x => x.Skill).FirstOrDefaultAsync(x => x.Id == id);
             var requiredSkill = await _dbContext.RequiredSkills.Include(x => x.Skill).Include(x => x.ProjectAdvertisement).FirstOrDefaultAsync(x => x.Id == id);
             if (requiredSkill == null)
             {
@@ -47,6 +49,7 @@ namespace FreelanceFinder.Application.Services
 
         public async Task UpdateAsync(RequiredSkill entity)
         {
+            //var requiredSkill = _dbContext.RequiredSkills.Include(x => x.Skill).FirstOrDefault(x => x.Id == entity.Id);
             var requiredSkill = _dbContext.RequiredSkills.Include(x => x.Skill).Include(x => x.ProjectAdvertisement).FirstOrDefault(x => x.Id == entity.Id);
             if (requiredSkill == null)
             {

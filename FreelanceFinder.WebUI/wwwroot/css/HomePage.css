@@ -42,7 +42,7 @@ body {
 .card-container .card .card-price {
   font-weight: bold;
   font-size: 60px;
-  width: 270px;
+  width: 400px;
   height: 140px;
   display: flex;
   align-items: center;
@@ -80,7 +80,7 @@ body {
   background-image: linear-gradient(90deg, #6fc6a9, #058ba9);
 }
 .card-container .card:hover .card-price {
-  width: 290px;
+  width: 350px;
   height: 160px;
 }
 @media (max-width: 767px) {

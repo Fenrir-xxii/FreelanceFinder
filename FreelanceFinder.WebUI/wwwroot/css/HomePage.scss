@@ -45,7 +45,7 @@ body {
         .card-price {
             font-weight: bold;
             font-size: 60px;
-            width: 270px;
+            width: 400px;
             height: 140px;
             display: flex;
             align-items: center;
@@ -97,7 +97,7 @@ body {
 
         &:hover {
             .card-price {
-                width: 290px;
+                width: 350px;
                 height: 160px;
             }
         }

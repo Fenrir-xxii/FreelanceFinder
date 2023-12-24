@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceFinder.Core", "FreelanceFinder.Core\FreelanceFinder.Core.csproj", "{842B715E-91E3-4495-9384-A7006C1C2567}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreelanceFinder.Core", "FreelanceFinder.Core\FreelanceFinder.Core.csproj", "{842B715E-91E3-4495-9384-A7006C1C2567}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceFinder.Application", "FreelanceFinder.Application\FreelanceFinder.Application.csproj", "{8633D5F4-E87E-4834-AF84-34383F64EFC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreelanceFinder.Application", "FreelanceFinder.Application\FreelanceFinder.Application.csproj", "{8633D5F4-E87E-4834-AF84-34383F64EFC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceFinder.Infrastructure", "FreelanceFinder.Infrastructure\FreelanceFinder.Infrastructure.csproj", "{A87FDBA4-5758-4F8E-B7D2-D7C9951EB878}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreelanceFinder.Infrastructure", "FreelanceFinder.Infrastructure\FreelanceFinder.Infrastructure.csproj", "{A87FDBA4-5758-4F8E-B7D2-D7C9951EB878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceFinder.WebUI", "FreelanceFinder.WebUI\FreelanceFinder.WebUI.csproj", "{52ECDEAE-5F80-49DD-8EB1-4858A1B3ADE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FreelanceFinder.WebUI", "FreelanceFinder.WebUI\FreelanceFinder.WebUI.csproj", "{52ECDEAE-5F80-49DD-8EB1-4858A1B3ADE4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{953B2E04-598F-4E95-8C4A-0E859C9AADDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreelanceFinder.Application.Tests", "FreelanceFinder.Application.Tests\FreelanceFinder.Application.Tests.csproj", "{166A1018-1DFD-4F44-A3B5-4F18C95D9231}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +37,16 @@ Global
 		{52ECDEAE-5F80-49DD-8EB1-4858A1B3ADE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52ECDEAE-5F80-49DD-8EB1-4858A1B3ADE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52ECDEAE-5F80-49DD-8EB1-4858A1B3ADE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{166A1018-1DFD-4F44-A3B5-4F18C95D9231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166A1018-1DFD-4F44-A3B5-4F18C95D9231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166A1018-1DFD-4F44-A3B5-4F18C95D9231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166A1018-1DFD-4F44-A3B5-4F18C95D9231}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{166A1018-1DFD-4F44-A3B5-4F18C95D9231} = {953B2E04-598F-4E95-8C4A-0E859C9AADDE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B739564C-6769-419F-B53F-380DC0D1253C}
